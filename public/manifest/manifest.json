@@ -5,8 +5,8 @@
   "background_color": "#42CCFA",
   "display": "standalone",
   "orientation": "portrait",
-  "scope": "/",
-  "start_url": "/",
+  "scope": "/PathPlanner/",
+  "start_url": "/PathPlanner/",
   "icons": [
     {
       "src": "icon-72x72.png",

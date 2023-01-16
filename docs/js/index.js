@@ -5,7 +5,7 @@ const registerServiceWorker = async () => {
     if ("serviceWorker" in navigator) {
         try {
             const registration = await navigator.serviceWorker.register("/PathPlanner/sw.js", {
-                scope: "/PathPlanner",
+                scope: "/PathPlanner/",
             });
             if (registration.installing) {
                 console.log("Service worker installing");
