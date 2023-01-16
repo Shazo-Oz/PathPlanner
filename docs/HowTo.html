@@ -22,7 +22,7 @@
     <br /><br />
     <h3>Background</h3><br />
     <div class="exp-txt">
-        Path Planner calculates the shortest path using the genetic algorithm.
+        Path Planner calculates the shortest path using the <span title="The solution to the traveling salesman problem is carried out using the genetic algorithm. What is the genetic algorithm? This algorithm behaves in the same way that human genes behave in evolution. The intention is that this algorithm produces a generation of possible solutions, pairs them, and thus they supposedly give birth, creating a new generation. In fact, this is how the algorithm continues for several 'generations' , until it reaches an answer that satisfies it (the most efficient solution). The genetic algorithm is mainly used to solve optimization problems for which a deterministic or probabilistic solution that works in reasonable time is not known. In our output appears the word 'Generation' , this word describes the number of generations until reaching the possible solution.">genetic algorithm</span>.
         The system produces generations of trajectories just like generations in our evolution.
         In each generation there are mutations in the DNA of the entities and there is an evolution of the entity so
         that it is more suitable to the required conditions, in our case: the lowest number of kilometers.
@@ -37,7 +37,8 @@
             <li> Select the starting point (in which the shuttle start the route)</li>
             <li> Add another point eighter from the map or from your saved points list</li>
             <li> When you ready, add destination point (in which the shuttle finish the route)</li>
-            <li> Make sure you didn't miss any waypoint (now it's also the time to save your favorite points for easy access later 😉)</li>
+            <li> Make sure you didn't miss any waypoint (now it's also the time to save your favorite points for easy
+                access later 😉)</li>
             <li> Press the Generate Path button </li>
             <li> On the next page, make sure your data is correct and press the Calculate button </li>
             <li> Drive safe 🚘 and don't forget to share your feedback with us</li>
@@ -61,14 +62,14 @@
                 if (file) {
                     /* Make an HTTP request using the attribute value as the file name: */
                     xhttp = new XMLHttpRequest();
-                    xhttp.file = file;
+                    xhttp.file = `PathPlanner/${file}`;
                     xhttp.onreadystatechange = function () {
                         if (this.readyState == 4) {
                             if (this.status == 200) {
                                 elmnt.outerHTML = this.responseText;
-                                const nav = elmnt.getAttribute("navActive")
-                                if (nav) {
-                                    document.querySelector(`nav ul a[href="${nav}"]`).classList.add('active')
+                                const nav=elmnt.getAttribute("navActive")
+                                if (nav){
+                                    document.querySelector(`nav ul a[href*="${nav}"]`).classList.add('active')
                                 }
                             }
                             if (this.status == 404) {

@@ -105,14 +105,14 @@
                 if (file) {
                     /* Make an HTTP request using the attribute value as the file name: */
                     xhttp = new XMLHttpRequest();
-                    xhttp.file = file;
+                    xhttp.file = `PathPlanner/${file}`;
                     xhttp.onreadystatechange = function () {
                         if (this.readyState == 4) {
                             if (this.status == 200) {
                                 elmnt.outerHTML = this.responseText;
-                                const nav = elmnt.getAttribute("navActive")
-                                if (nav) {
-                                    document.querySelector(`nav ul a[href="${nav}"]`).classList.add('active')
+                                const nav=elmnt.getAttribute("navActive")
+                                if (nav){
+                                    document.querySelector(`nav ul a[href*="${nav}"]`).classList.add('active')
                                 }
                             }
                             if (this.status == 404) {
