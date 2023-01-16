@@ -1,0 +1,131 @@
+:root {
+    --nav-height: 4.5rem;
+    --footer-height: 7rem;
+}
+
+html {
+    min-width: 500px;
+}
+
+body {
+    padding-top: var(--nav-height);
+    /* for fixed nav */
+    padding-bottom: var(--footer-height);
+    /* for float footer */
+    min-height: max(calc(100vh / var(--page-zoom,1)), 100vh);
+    position:relative;
+}
+
+/* nav
+--------------------------------------------------------------*/
+nav {
+    font-family: system-ui;
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: var(--nav-height);
+    background: linear-gradient(to left, hsl(var(--main-hue), 95%, 52%), hsl(var(--secondary-hue), 44%, 38%));
+    box-shadow: 0 0 4rem 3px white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-inline: .5rem;
+    z-index: 99999999;
+}
+
+
+nav .brand :where(img, svg) {
+    max-height: var(--nav-height);
+    clip-path: circle(calc((var(--nav-height) * 1.8 / 4)));
+}
+
+nav>ul {
+    flex-grow: 1;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    margin-left: 1em;
+    padding: 0;
+    overflow: hidden;
+    height: var(--nav-height);
+}
+
+nav ul li {
+    float: left;
+}
+
+nav ul li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3em;
+    padding-inline: 1em;
+    text-decoration: none;
+    line-height: var(--nav-height);
+    height: var(--nav-height);
+}
+
+@media only screen and (max-width:700px) {
+    nav ul li a {
+        font-size: clamp(15px, 3vw,3vw);
+        padding-inline: .85em;
+    }
+
+}
+
+nav ul li a:hover:not(.active) {
+    background: linear-gradient(to top, #00000077, transparent 70%);
+}
+
+nav ul li a.active {
+    background: linear-gradient(to top, #0055AA77, transparent 70%);
+}
+
+nav .logOut {
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    color: rgb(75, 13, 13);
+    font-weight: bold;
+    padding: .5rem 1rem;
+    cursor: pointer;
+}
+
+/* footer
+--------------------------------------------------------------*/
+
+
+footer {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to top, hsl(var(--secondary-hue), 60%, 40%) 70%, transparent);
+    color: #2d2d2d;
+    height: var(--footer-height);
+    padding-top: 2.2rem;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    inset: auto 0 0 0;
+    margin-bottom: 0px !important;
+    font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+footer .made_by {
+    font-size: 1em !important;
+    margin-bottom: 1em;
+}
+
+footer .ver {
+    text-size-adjust: 100%;
+    font-size: .75rem !important;
+}
+
+footer .ver::before {
+    content: "Version "
+}
+
+footer .ver::after {
+    content: "2.0.0"
+}

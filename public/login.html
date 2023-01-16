@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width">
+   <title>Traveling Salesman Problem</title>
+   <link rel="stylesheet" href="/PathPlanner/css/loginStyle.css">
+
+   <link rel="shortcut icon" href="/PathPlanner/manifest/icon-512x512.png" type="image/x-icon">
+
+   <script src="/PathPlanner/js/fb-init.js" type="module"></script>
+   <script src="/PathPlanner/js/fb-auth-login.js" type="module"></script>
+   <script src="/PathPlanner/js/login.js" type="module" defer></script>
+</head>
+
+<body>
+   <main>
+      <div class="error" style="display:none"></div>
+      <div class="wrapper">
+         <div class="title-text">
+            <div class="title login">
+               Login Form
+            </div>
+            <div class="title signup">
+               Signup Form
+            </div>
+         </div>
+         <div class="form-container">
+            <div class="slide-controls">
+               <input type="radio" name="slide" id="login" checked>
+               <input type="radio" name="slide" id="signup">
+               <label for="login" class="slide login">Login</label>
+               <label for="signup" class="slide signup">Signup</label>
+               <div class="slider-tab"></div>
+            </div>
+            <div class="form-inner">
+               <form action="#" class="login">
+                  <div class="field">
+                     <input type="text" name="userName" id="userName" placeholder="Email Address"
+                        autocomplete="username" required>
+                  </div>
+                  <div class="field">
+                     <input type="password" name="userPass" id="userPass" placeholder="Password"
+                        autocomplete="current-password" required>
+                  </div>
+
+                  <div class="pass-link">
+                     <!-- <a href="#">Forgot password?</a> -->
+                  </div>
+                  <div class="field btn">
+                     <div class="btn-layer"></div>
+                     <input type="submit" value="Login" id="loginBtn">
+                  </div>
+                  <div class="signup-link">
+                     Not a member? <a href="">Signup now</a>
+                  </div>
+               </form>
+               <form action="#" class="signup">
+                  <div class="field">
+                     <input type="text" name="new_name" id="new_name" placeholder="Nickname" required>
+                  </div>
+                  <div class="field">
+                     <input type="text" name="new_userName" id="new_userName" placeholder="Email Address"
+                        autocomplete="username" required>
+                  </div>
+                  <div class="field">
+                     <input type="password" name="new_userPass" id="new_userPass" placeholder="Password"
+                        autocomplete="new-password" required>
+                  </div>
+                  <div class="field">
+                     <input type="password" name="new_userConfirmPass" id="new_userConfirmPass"
+                        placeholder="Confirm password" autocomplete="new-password" required>
+                  </div>
+                  <div class="field btn">
+                     <div class="btn-layer"></div>
+                     <input type="submit" value="Signup" id="registerBtn">
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </main>
+</body>
+
+</html>

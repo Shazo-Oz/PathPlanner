@@ -1,0 +1,106 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width">
+
+  <title>Traveling Salesman Solution</title>
+  <link rel="stylesheet" href="/PathPlanner/css/leaflet/leaflet.css">
+  <link rel="stylesheet" href="/PathPlanner/css/leaflet/leafletRouting.css">
+  <link rel="stylesheet" href="/PathPlanner/css/footerNavStyle.css">
+  <link rel="stylesheet" href="/PathPlanner/css/pathStyle.css">
+
+  <link rel="shortcut icon" href="/PathPlanner/manifest/icon-512x512.png" type="image/x-icon">
+
+  <script type="module" src="/PathPlanner/js/fb-init.js"></script>
+  <script type="module" src="/PathPlanner/js/fb-auth-nav.js" defer></script>
+
+  <script src="/PathPlanner/js/leaflet.js" defer></script>
+  <script src="/PathPlanner/js/leaflet-routing.js" defer></script>
+  <script src="/PathPlanner/js/path.js" type="module" defer></script>
+</head>
+
+<body>
+  <span include-html="navBar.html" navActive="/path.html"></span>
+
+  <h1>SOLVING YOUR PROBLEM USING A GENETIC ALGORITHM</h1>
+
+  <div class="art">
+    <div id="tips" class="tips">
+      <h2>Tips for safe travel:</h2>
+      <ul>
+        <li>Don't forget to turn on the lights</li>
+        <li>Drive at the speed limit</li>
+        <li>Don't forget to wear seat belts</li>
+      </ul>
+    </div>
+    <div class="main">
+
+      <div id="map">
+        <div id="mapErrText" class="err"></div>
+      </div>
+      <div class="directionsPop"></div>
+    </div>
+
+    <br>
+  </div>
+  <button class="solve">Click to solve</button>
+
+  <div class="res">
+    <p id="gen"></p>
+    <p id="path"></p>
+    <p id="distance"></p>
+    <p id="time"></p>
+  </div>
+  <button class="backbtn">Back</button>
+  <footer>
+    <span class="made_by">©2022 Path Planner, All Rights Reserved.</span>
+    <span class="ver"></span>
+  </footer>
+  <script>
+    function includeHTML() {
+      var z, i, elmnt, file, xhttp;
+      /* Loop through a collection of all HTML elements: */
+      z = document.getElementsByTagName("*");
+      for (i = 0; i < z.length; i++) {
+        elmnt = z[i];
+        /*search for elements with a certain atrribute:*/
+        file = elmnt.getAttribute("include-html");
+        if (file) {
+          /* Make an HTTP request using the attribute value as the file name: */
+          xhttp = new XMLHttpRequest();
+          xhttp.file = file;
+          xhttp.onreadystatechange = function () {
+            if (this.readyState == 4) {
+              if (this.status == 200) {
+                elmnt.outerHTML = this.responseText;
+                const nav = elmnt.getAttribute("navActive")
+                if (nav) {
+                  document.querySelector(`nav ul a[href="${nav}"]`)?.classList.add('active')
+                }
+              }
+              if (this.status == 404) {
+                const retryInterval = 60
+                elmnt.innerHTML = `Page not found. retry in ${retryInterval} seconds`;
+                setTimeout(() => {
+                  /* call this function once more: */
+                  includeHTML()
+                }, retryInterval * 1000)
+              };
+            }
+          }
+          xhttp.open("GET", file, true);
+          xhttp.send();
+          /* Exit the function: */
+          return;
+        }
+      }
+    }
+    includeHTML()
+  </script>
+</body>
+
+</html>

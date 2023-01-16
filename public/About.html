@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <title>About Us</title>
+    <link rel="stylesheet" href="/PathPlanner/css/footerNavStyle.css">
+    <link rel="stylesheet" href="/PathPlanner/css/aboutStyle.css">
+
+    <link rel="shortcut icon" href="/PathPlanner/manifest/icon-512x512.png" type="image/x-icon">
+
+    <script type="module" src="/PathPlanner/js/fb-init.js"></script>
+    <script type="module" src="/PathPlanner/js/fb-auth-nav.js" defer></script>
+</head>
+
+<body>
+    <span include-html="navBar.html" navActive="/About.html"></span>
+
+    <h1>About Path Planner</h1>
+    <br /><br /><br /><br />
+    <div class="exp-txt">
+        Path Planner is a website designed to help plan a shuttle route where it is required to pick up passengers from
+        different locations.
+        The site uses the genetic algorithm to find the shortest path (by aerial calculation) between all the points.
+        All you have to do is choose the starting, collecting, and ending waypoints and the system will calculate the
+        most efficient route for you.
+    </div>
+
+    <br /><br /><br /><br />
+    <h3>About Us</h3><br />
+    <div class="columns">
+        <div class="column">
+            <div class="container">
+                <img src="./assets/Male anonymus.png" class="anonymus"/><br /><br /><br />
+                <span class="has-text-black">Oz Shazo</span>
+                <br /><br />
+                <span class="has-text-info">CEO</span>
+                <br /><br />
+                <span class="has-text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab odit nam ullam
+                    provident consequuntur sunt.</span>
+            </div>
+        </div>
+        <div class="column">
+            <div class="container">
+                <img src="./assets/Male anonymus.png" class="anonymus"/><br /><br /><br />
+                <span class="has-text-black">Matan Cohen</span>
+                <br /><br />
+                <span class="has-text-info">Development Director</span>
+                <br /><br />
+                <span class="has-text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab odit nam ullam
+                    provident consequuntur sunt.</span>
+            </div>
+        </div>
+        <div class="column">
+            <div class="container">
+                <img src="./assets/Male anonymus.png" class="anonymus"/><br /><br /><br />
+                <span class="has-text-black">Uriya Sabag</span>
+                <br /><br />
+                <span class="has-text-info">Product Manager</span>
+                <br /><br />
+                <span class="has-text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab odit nam ullam
+                    provident consequuntur sunt.</span>
+            </div>
+        </div>
+        <div class="column">
+            <div class="container">
+                <img src="./assets/Male anonymus.png" class="anonymus"/><br /><br /><br />
+                <span class="has-text-black">Niv Zano</span>
+                <br /><br />
+                <span class="has-text-info">Financial director</span>
+                <br /><br />
+                <span class="has-text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab odit nam ullam
+                    provident consequuntur sunt.</span>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+    <footer>
+        <span class="made_by">©2022 Path Planner, All Rights Reserved.</span>
+        <span class="ver"></span>
+    </footer>
+    <script>
+        function includeHTML() {
+            var z, i, elmnt, file, xhttp;
+            /* Loop through a collection of all HTML elements: */
+            z = document.getElementsByTagName("*");
+            for (i = 0; i < z.length; i++) {
+                elmnt = z[i];
+                /*search for elements with a certain atrribute:*/
+                file = elmnt.getAttribute("include-html");
+                if (file) {
+                    /* Make an HTTP request using the attribute value as the file name: */
+                    xhttp = new XMLHttpRequest();
+                    xhttp.file=file;
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState == 4) {
+                            if (this.status == 200) {
+                                elmnt.outerHTML = this.responseText;
+                                const nav=elmnt.getAttribute("navActive")
+                                if (nav){
+                                    document.querySelector(`nav ul a[href="${nav}"]`).classList.add('active')
+                                }
+                            }
+                            if (this.status == 404) {
+                                const retryInterval = 60
+                                elmnt.innerHTML = `Page not found. retry in ${retryInterval} seconds`;
+                                setTimeout(() => {
+                                    /* call this function once more: */
+                                    includeHTML()
+                                }, retryInterval * 1000)
+                            };
+                        }
+                    }
+                    xhttp.open("GET", file, true);
+                    xhttp.send();
+                    /* Exit the function: */
+                    return;
+                }
+            }
+        }
+        includeHTML()
+    </script>
+</body>
+
+</html>

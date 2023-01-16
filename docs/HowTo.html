@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <title>About Us</title>
+    <link rel="stylesheet" href="/PathPlanner/css/footerNavStyle.css">
+    <link rel="stylesheet" href="/PathPlanner/css/AboutStyle.css">
+
+    <link rel="shortcut icon" href="/PathPlanner/manifest/icon-512x512.png" type="image/x-icon">
+
+    <script type="module" src="/PathPlanner/js/fb-init.js"></script>
+    <script type="module" src="/PathPlanner/js/fb-auth-nav.js" defer></script>
+</head>
+
+<body>
+    <span include-html="navBar.html" navActive="/HowTo.html"></span>
+
+    <h1>How does it work?</h1>
+    <br /><br />
+    <h3>Background</h3><br />
+    <div class="exp-txt">
+        Path Planner calculates the shortest path using the genetic algorithm.
+        The system produces generations of trajectories just like generations in our evolution.
+        In each generation there are mutations in the DNA of the entities and there is an evolution of the entity so
+        that it is more suitable to the required conditions, in our case: the lowest number of kilometers.
+    </div>
+    <br /><br /><br /><br />
+    <h3>How to use the service</h3><br />
+    <div class="exp-txt">
+        <ol>
+            <li> Go to <a href="/PathPlanner/">Home</a> page 🏠</li>
+            <li> Your first time on our site? Location permission must be approved for best results </li>
+            <li> Press the Start button</li>
+            <li> Select the starting point (in which the shuttle start the route)</li>
+            <li> Add another point eighter from the map or from your saved points list</li>
+            <li> When you ready, add destination point (in which the shuttle finish the route)</li>
+            <li> Make sure you didn't miss any waypoint (now it's also the time to save your favorite points for easy access later 😉)</li>
+            <li> Press the Generate Path button </li>
+            <li> On the next page, make sure your data is correct and press the Calculate button </li>
+            <li> Drive safe 🚘 and don't forget to share your feedback with us</li>
+        </ol>
+    </div>
+
+    <br><br>
+    <footer>
+        <span class="made_by">©2022 Path Planner, All Rights Reserved.</span>
+        <span class="ver"></span>
+    </footer>
+    <script>
+        function includeHTML() {
+            var z, i, elmnt, file, xhttp;
+            /* Loop through a collection of all HTML elements: */
+            z = document.getElementsByTagName("*");
+            for (i = 0; i < z.length; i++) {
+                elmnt = z[i];
+                /*search for elements with a certain atrribute:*/
+                file = elmnt.getAttribute("include-html");
+                if (file) {
+                    /* Make an HTTP request using the attribute value as the file name: */
+                    xhttp = new XMLHttpRequest();
+                    xhttp.file = file;
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState == 4) {
+                            if (this.status == 200) {
+                                elmnt.outerHTML = this.responseText;
+                                const nav = elmnt.getAttribute("navActive")
+                                if (nav) {
+                                    document.querySelector(`nav ul a[href="${nav}"]`).classList.add('active')
+                                }
+                            }
+                            if (this.status == 404) {
+                                const retryInterval = 60
+                                elmnt.innerHTML = `Page not found. retry in ${retryInterval} seconds`;
+                                setTimeout(() => {
+                                    /* call this function once more: */
+                                    includeHTML()
+                                }, retryInterval * 1000)
+                            };
+                        }
+                    }
+                    xhttp.open("GET", file, true);
+                    xhttp.send();
+                    /* Exit the function: */
+                    return;
+                }
+            }
+        }
+        includeHTML()
+    </script>
+</body>
+
+</html>

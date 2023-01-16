@@ -1,0 +1,225 @@
+:root {
+  --main-hue: 195;
+  --secondary-hue: calc(var(--main-hue) - 10);
+  --main-color: hsl(var(--main-hue), 95%, 62%);
+  --secondary-color: hsl(var(--secondary-hue), 44%, 48%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--main-color);
+  color: #fff;
+}
+
+body {
+  margin: 0;
+  text-align: center;
+  background: linear-gradient(left, var(--secondary-color), var(--main-color));
+  background: -webkit-linear-gradient(left, var(--secondary-color), var(--main-color));
+  background-repeat:no-repeat ;
+  font-family: 'Merriweather', serif;
+}
+
+h1 {
+  min-width: 500px;
+  margin-top: 2rem;
+}
+
+.art {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.tips {
+  /* direction: rtl; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  gap: 1rem;
+
+  width: fit-content;
+  margin-inline-start: 1rem;
+  padding-inline-end: 1.5rem;
+  flex: 0.25
+}
+
+.tips h2 {
+  margin: 0;
+  margin-bottom: 2rem;
+  text-decoration: underline 2px navy;
+}
+
+.tips ul {
+  display: flex;
+  flex-direction: column;
+  padding-right: 10px;
+  margin-top: 0;
+  gap: 3rem
+}
+
+.tips ul li {
+  font-size: clamp(1.3rem, 3vw, 1.5rem);
+}
+
+.tips ul li::marker {
+  color: navy;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  /* direction: rtl; */
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+#map {
+  height: 500px;
+  max-height: calc(100vh - var(--nav-height));
+  flex: 1;
+}
+
+.directionsPop {
+  direction: ltr;
+  border: solid navy 2px;
+  flex: .5;
+  margin-inline-start: 1rem;
+  height: 500px;
+  max-height: calc(100vh - var(--nav-height));
+  overflow-y: scroll;
+}
+
+.directionsPop:empty {
+  opacity: 0;
+  flex: 0.2
+}
+
+.directionsPop .leaflet-routing-container {
+  width: 100%;
+}
+
+.directionsPop table {
+  --padding:.25rem;
+  width: calc(100% - 2 * var(--padding));
+  margin-inline: var(--padding);
+}
+
+.directionsPop td {
+  width: fit-content !important
+}
+
+@media only screen and (max-width: 1000px) {
+  h1 {
+    min-width: unset;
+    font-size: 1.65rem;
+  }
+
+  .art {
+    flex-direction: column;
+  }
+
+  .main {
+    width: 97%;
+  }
+
+  .directionsPop {
+    margin-inline-start: .5rem;
+  }
+
+  .directionsPop table {
+    --padding:.5rem;
+  }
+
+  .tips {
+    margin-top: 1rem;
+  }
+
+  .tips h2 {
+    margin-bottom: .5rem;
+    }
+
+  .tips ul {
+    flex-direction: row;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .main {
+    flex-direction: column;
+    gap: .5rem;
+    height: 800px;
+  }
+
+  #map,
+  .directionsPop {
+    margin: 0;
+    flex: unset;
+    width: 95%
+  }
+
+  .directionsPop table {
+    --padding:1rem;
+  }
+
+}
+
+.solve {
+  background: #78f6d2;
+  background: -webkit-linear-gradient(#78f6d2, #00ff78);
+  background: linear-gradient(#78f6d2, #00ff78);
+  border-radius: 5px;
+  padding: 8px 20px;
+  color: #fff;
+  display: inline-block;
+  font: normal 700 24px/1 "Calibri", sans-serif;
+  text-align: center;
+  text-shadow: 1px 1px #000000;
+  cursor: pointer;
+}
+
+body:has(.solve) .dirBtn {
+  display: none;
+}
+
+.res>p {
+  font-size: 25px;
+  direction: ltr;
+}
+
+
+.backbtn {
+  background: #78f6d2;
+  background: -webkit-linear-gradient(#f6a678, #ff2a00);
+  background: linear-gradient(#f6a678, #ff2a00);
+  border-radius: 5px;
+  padding: 8px 20px;
+  color: #ffffff;
+  display: inline-block;
+  font: normal 700 24px/1 "Calibri", sans-serif;
+  text-align: center;
+  text-shadow: 1px 1px #000000;
+  cursor: pointer;
+}
+
+.leaflet-marker-pane>div[id] {
+  position: absolute;
+  translate: calc(-50% + 12.5px) 170%;
+  width: max-content !important;
+  font-weight: bold;
+  font-size: medium;
+  background-color: #ffffff99;
+  height: unset !important;
+  border-radius: .5em;
+  padding: 0 .2em;
+}
