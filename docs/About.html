@@ -18,7 +18,7 @@
 <body>
     <span include-html="navBar.html" navActive="/About.html"></span>
 
-    <h1>About Path Planner</h1>
+    <h1>Path Planner - About</h1>
     <br /><br /><br /><br />
     <div class="exp-txt">
         Path Planner is a website designed to help plan a shuttle route where it is required to pick up passengers from
@@ -77,47 +77,6 @@
         <span class="made_by">©2022 Path Planner, All Rights Reserved.</span>
         <span class="ver"></span>
     </footer>
-    <script>
-        function includeHTML() {
-            var z, i, elmnt, file, xhttp;
-            /* Loop through a collection of all HTML elements: */
-            z = document.getElementsByTagName("*");
-            for (i = 0; i < z.length; i++) {
-                elmnt = z[i];
-                /*search for elements with a certain atrribute:*/
-                file = elmnt.getAttribute("include-html");
-                if (file) {
-                    /* Make an HTTP request using the attribute value as the file name: */
-                    xhttp = new XMLHttpRequest();
-                    xhttp.file = `PathPlanner/${file}`;
-                    xhttp.onreadystatechange = function () {
-                        if (this.readyState == 4) {
-                            if (this.status == 200) {
-                                elmnt.outerHTML = this.responseText;
-                                const nav=elmnt.getAttribute("navActive")
-                                if (nav){
-                                    document.querySelector(`nav ul a[href*="${nav}"]`).classList.add('active')
-                                }
-                            }
-                            if (this.status == 404) {
-                                const retryInterval = 60
-                                elmnt.innerHTML = `Page not found. retry in ${retryInterval} seconds`;
-                                setTimeout(() => {
-                                    /* call this function once more: */
-                                    includeHTML()
-                                }, retryInterval * 1000)
-                            };
-                        }
-                    }
-                    xhttp.open("GET", file, true);
-                    xhttp.send();
-                    /* Exit the function: */
-                    return;
-                }
-            }
-        }
-        includeHTML()
-    </script>
 </body>
 
 </html>
